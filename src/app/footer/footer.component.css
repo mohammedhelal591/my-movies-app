@@ -1,0 +1,12 @@
+i {
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.github:hover {
+    color: #AD5C51;
+}
+
+.linkedin:hover {
+    color: #0072b1;
+}

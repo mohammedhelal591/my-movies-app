@@ -1,0 +1,39 @@
+<form [formGroup]="registerForm" (ngSubmit)="submitForm(registerForm)">
+
+    <div *ngIf="error" class="alert alert-danger">
+        {{error}}
+    </div>
+
+
+    <label for="first_name">First Name</label>
+    <input formControlName="first_name" type="text" class="form-control mb-3">
+    <div *ngIf="registerForm.get('first_name')?.errors && (registerForm.get('first_name')?.touched)" class="alert border border-danger">
+        <p *ngIf="registerForm.get('first_name')?.errors?.['required']">First Name Required</p>
+        <p *ngIf="registerForm.get('first_name')?.errors?.['minlength']">Minimum length 3 Letters</p>
+        <p *ngIf="registerForm.get('first_name')?.errors?.['maxlength']">Maximum length 12 letters</p>
+    </div>
+
+    <label for="last_name">Last Name</label>
+    <input formControlName="last_name" type="text" class="form-control mb-3">
+    <div *ngIf="registerForm.get('last_name')?.errors && registerForm.get('last_name')?.touched" class="alert border border-danger">
+        <p *ngIf="registerForm.get('last_name')?.errors?.['required']">Last Name Required</p>
+        <p *ngIf="registerForm.get('last_name')?.errors?.['minlength']">Minimum length 3 Letters</p>
+        <p *ngIf="registerForm.get('last_name')?.errors?.['maxlength']">Maximum length 12 letters</p>
+    </div>
+
+    <label for="email">Email</label>
+    <input formControlName="email" type="email" class="form-control mb-3">
+    <div *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched" class="alert border border-danger">
+        <p *ngIf="registerForm.get('email')?.errors?.['required']">Email Required</p>
+        <p *ngIf="registerForm.get('email')?.errors?.['email']">Please include at least 1 uppercase, 1 lowercase and number</p>
+    </div>
+
+    <label for="password">Password</label>
+    <input formControlName="password" type="password" class="form-control mb-3">
+    <div *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched" class="alert border border-danger">
+        <p *ngIf="registerForm.get('password')?.errors?.['required']">Password Required</p>
+        <p *ngIf="registerForm.get('password')?.errors?.['pattern']">Please enter a valid password</p>
+    </div>
+
+    <button type="submit" class="btn btn-info float-end">Register</button>
+</form>

@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     first_name:new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(12)]),
     last_name:new FormControl(null, [Validators.required, Validators.min(3), Validators.max(12)]),
     email:new FormControl(null, [Validators.required, Validators.email]),
-    password:new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{8,12}$')])
+    password:new FormControl(null, [Validators.required])
   });
 
   submitForm(registerForm:FormGroup){

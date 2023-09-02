@@ -18,8 +18,11 @@ import { SearchPipe } from './search.pipe';
 import { PopularComponent } from './popular/popular.component';
 import { FooterComponent } from './footer/footer.component';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
-
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -37,16 +40,20 @@ import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
     SearchPipe,
     PopularComponent,
     FooterComponent,
-    MoviedetailsComponent
+    MoviedetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

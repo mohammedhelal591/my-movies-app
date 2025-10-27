@@ -1,27 +1,44 @@
-# MyMoviesApp
+Here's a concise documentation for your `my-movies-app` project:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+---
 
-## Development server
+# My Movies App - Project Documentation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 1. Project Overview
 
-## Code scaffolding
+`My Movies App` is an Angular-based web application designed to provide users with an immersive experience for discovering movies and TV series. It leverages the TMDB (The Movie Database) API to fetch and display a wide range of film and series data, complemented by a secure user authentication system.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 2. Key Features
 
-## Build
+### 2.1 Movie and Series Data
+The application integrates with the TMDB API to offer comprehensive content exploration:
+*   **Trending Content:** Displays the latest trending movies and series.
+*   **Movies Categories:** Features "Now Playing," "Upcoming," "Top Rated," and "Popular" movie listings.
+*   **Series Categories:** Includes a dedicated section for popular TV series.
+*   **Details Pages:** Provides detailed information for individual movies and series.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 2.2 User Authentication
+A secure authentication system allows users to manage their accounts:
+*   **Registration:** Users can create new accounts.
+*   **Login/Logout:** Securely log in and out of their accounts.
+*   **Backend Integration:** Authentication logic is handled by a custom backend server hosted on `railway.app`.
 
-## Running unit tests
+## 3. Technical Stack
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+*   **Frontend:**
+    *   **Framework:** Angular (initially developed with Angular 11, subsequently upgraded to Angular 14 following best practices).
+    *   **Deployment:** Configured for deployment on GitHub Pages.
+*   **APIs:**
+    *   **Movie/Series Data:** TMDB API.
+*   **Backend:**
+    *   **Authentication:** Custom backend server hosted on `railway.app`.
 
-## Running end-to-end tests
+## 4. Recent Enhancements
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+*   **Auth Interceptor:** An `auth.interceptor.ts` has been implemented to enhance user experience and performance, likely by handling authentication tokens or request modifications consistently.
 
-## Further help
+## 5. Future Plans
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+*   **Angular Upgrade:** Planning to upgrade the Angular framework to its latest stable version to leverage new features, performance improvements, and security updates.
+
+---

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,8 @@ import { SearchPipe } from './search.pipe';
 import { PopularComponent } from './popular/popular.component';
 import { FooterComponent } from './footer/footer.component';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
+import { SerieDetailsComponent } from './serie-details/serie-details.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
     PopularComponent,
     FooterComponent,
     MoviedetailsComponent,
+    SerieDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,13 @@ import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

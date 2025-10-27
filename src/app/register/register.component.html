@@ -5,20 +5,20 @@
     </div>
 
 
-    <label for="first_name">First Name</label>
-    <input formControlName="first_name" type="text" class="form-control mb-3">
-    <div *ngIf="registerForm.get('first_name')?.errors && (registerForm.get('first_name')?.touched)" class="alert border border-danger">
-        <p *ngIf="registerForm.get('first_name')?.errors?.['required']">First Name Required</p>
-        <p *ngIf="registerForm.get('first_name')?.errors?.['minlength']">Minimum length 3 Letters</p>
-        <p *ngIf="registerForm.get('first_name')?.errors?.['maxlength']">Maximum length 12 letters</p>
+    <label for="firstName">First Name</label>
+    <input formControlName="firstName" type="text" class="form-control mb-3">
+    <div *ngIf="registerForm.get('firstName')?.errors && (registerForm.get('firstName')?.touched)" class="alert border border-danger">
+        <p *ngIf="registerForm.get('firstName')?.errors?.['required']">First Name Required</p>
+        <p *ngIf="registerForm.get('firstName')?.errors?.['minlength']">Minimum length 3 Letters</p>
+        <p *ngIf="registerForm.get('firstName')?.errors?.['maxlength']">Maximum length 12 letters</p>
     </div>
 
-    <label for="last_name">Last Name</label>
-    <input formControlName="last_name" type="text" class="form-control mb-3">
-    <div *ngIf="registerForm.get('last_name')?.errors && registerForm.get('last_name')?.touched" class="alert border border-danger">
-        <p *ngIf="registerForm.get('last_name')?.errors?.['required']">Last Name Required</p>
-        <p *ngIf="registerForm.get('last_name')?.errors?.['minlength']">Minimum length 3 Letters</p>
-        <p *ngIf="registerForm.get('last_name')?.errors?.['maxlength']">Maximum length 12 letters</p>
+    <label for="lastName">Last Name</label>
+    <input formControlName="lastName" type="text" class="form-control mb-3">
+    <div *ngIf="registerForm.get('lastName')?.errors && registerForm.get('lastName')?.touched" class="alert border border-danger">
+        <p *ngIf="registerForm.get('lastName')?.errors?.['required']">Last Name Required</p>
+        <p *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Minimum length 3 Letters</p>
+        <p *ngIf="registerForm.get('lastName')?.errors?.['maxlength']">Maximum length 12 letters</p>
     </div>
 
     <label for="email">Email</label>

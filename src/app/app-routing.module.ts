@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { MoviedetailsComponent } from './moviedetails/moviedetails.component';
+import { SerieDetailsComponent } from './serie-details/serie-details.component';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path:'popular', canActivate:[AuthGuard], component:PopularComponent},
   {path:'now-playing', canActivate:[AuthGuard], component:NowPlayingComponent},
   {path:'moviedetails/:id', canActivate:[AuthGuard], component:MoviedetailsComponent},
+  {path:'seriedetails/:id', canActivate:[AuthGuard], component:SerieDetailsComponent},
   {path:'register', component:RegisterComponent},
   {path:'login', component:LoginComponent},
   {path:'**', component:NotfoundComponent}

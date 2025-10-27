@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MoviesService } from './../movies.service';
+import { Component } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import { SeriesService } from '../series.service';
 
 @Component({
-  selector: 'app-moviedetails',
-  templateUrl: './moviedetails.component.html',
-  styleUrls: ['./moviedetails.component.css'],
+  selector: 'app-serie-details',
+  templateUrl: './serie-details.component.html',
+  styleUrls: ['./serie-details.component.css'],
 })
-export class MoviedetailsComponent {
-  movieId: any;
-  movieDetails: any;
+export class SerieDetailsComponent {
+  serieId: any;
+  serieDetails: any;
 
   imgPrefix: string = 'https://image.tmdb.org/t/p/w500/';
 
@@ -18,18 +18,18 @@ export class MoviedetailsComponent {
 
   constructor(
     private _ActivatedRoute: ActivatedRoute,
-    private _MoviesService: MoviesService,
+    private _SeriesService: SeriesService,
     private sanitizer: DomSanitizer
   ) {
-    this.movieId = _ActivatedRoute.snapshot.params['id'];
+    this.serieId = this._ActivatedRoute.snapshot.params['id'];
 
-    this._MoviesService.getMovieDetails(this.movieId).subscribe({
+    this._SeriesService.getMovieDetails(this.serieId).subscribe({
       next: (response) => {
-        this.movieDetails = response;
+        this.serieDetails = response;
       },
     });
 
-    this._MoviesService.getTrailer(this.movieId).subscribe({
+    this._SeriesService.getTrailer(this.serieId).subscribe({
       next: (response) => {
         // Example: Assume 'response' is your API result
         const results = response.results;

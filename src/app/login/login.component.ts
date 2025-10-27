@@ -6,33 +6,36 @@ import { AuthService } from './../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private _AuthService:AuthService, private _Router:Router) {}
-  error:string = '';
+  constructor(private _AuthService: AuthService, private _Router: Router) {}
+  error: string = '';
 
   loginForm: FormGroup = new FormGroup({
-    email:new FormControl(null, [Validators.required, Validators.email]),
-    password:new FormControl(null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{8,12}$')])
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    password: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(
+        '^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};:\'",.<>/?|\\\\]{8,12}$'
+      ),
+    ]),
   });
 
-  submitForm(loginForm:FormGroup){
+  submitForm(loginForm: FormGroup) {
     if (loginForm.valid) {
-      this._AuthService.login(loginForm.value).subscribe((response)=>{
-        if (response.message === "success") {
-          localStorage.setItem("currentUser", response.token);
+      this._AuthService.login(loginForm.value).subscribe({
+        next: (response) => {
+          localStorage.setItem('currentUser', response.data.accessToken);
           this._AuthService.saveCurrentUserData();
           this._Router.navigate(['/home']);
-        } else {
-          this.error = response.message;
-        }
+        },
+        error: (error) => {
+          console.log('error : ', error);
+        },
       });
-    };
-  };
-
-  ngOnInit(): void {
+    }
   }
 
+  ngOnInit(): void {}
 }

@@ -1,6 +1,6 @@
 <div class="row">
     <div *ngFor="let serie of tvSeriesArray" class="col-md-4 p-3">
-        <div class="movie position-relative">
+        <div [routerLink]="['/seriedetails', serie.id]" routerLinkActive="router-link-active" class="movie position-relative">
             <img class="w-100" [src]="imgPrefix + serie.poster_path" alt="" />
             <h4 class="my-2 h6 text-center">{{serie.title}}{{serie.name}}</h4>
             <div class="vote position-absolute">{{serie.vote_average.toFixed(1)}}</div>

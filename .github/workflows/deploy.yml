@@ -8,39 +8,32 @@ on:
 # Define jobs (a workflow can have multiple jobs, here we have one: build)
 jobs:
   build:
-    runs-on: ubuntu-latest # Run on a fresh Ubuntu virtual machine
+    name: Build & Validate
+    runs-on: ubuntu-latest # Use a fresh Ubuntu virtual machine to run this
 
-    steps:
-      # Step 1: Get your code
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        # This clones your repo into the VM so we can run commands on it
+    steps: # Each step is one action inside the job
+      - name: Checkout code
+        uses: actions/checkout@v3
+        # WHY: Downloads your repo code into the VM so it can work with it
 
-      # Step 2: Setup Node.js environment
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 18 # Install Node.js version 18 (npm comes with it)
+          node-version: "18" # Angular 15 works well with Node 16–18
+          cache: "npm" # WHY cache: Speeds up future runs by saving node_modules
+        # WHY this step: The VM is a blank machine — it has nothing installed
 
-      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
-        # Reads package.json & package-lock.json and installs all packages into node_modules
+        run: npm ci
+        # WHY 'npm ci' not 'npm install':
+        # 'npm ci' is stricter — it uses package-lock.json exactly as-is,
+        # making builds reproducible and faster in CI environments
 
-      # Step 4: Build Angular app
-      - name: Build Angular app
-        run: npm run build -- --prod
-        # Creates production-ready files in dist/<app-name>
-        # Also detects code errors that prevent building
-
-      # Step 5: Deploy to GitHub Pages
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Authentication so the action can push to gh-pages branch
-          publish_dir: ./dist/my-movies-app
-          # Specifies folder to deploy (replace 'your-app-name' with actual Angular project name)
+      - name: Build (Production)
+        run: npm run build -- --configuration production
+        # WHY: Verifies the app compiles without errors using prod settings
+        # The '--configuration production' enables optimizations (tree-shaking,
+        # minification, AOT compilation) exactly like a real deployment would
   # ─────────────────────────────────────────
   # JOB 2: Deploy (CD part)
   # Only runs AFTER Job 1 succeeds
